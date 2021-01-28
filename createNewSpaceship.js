@@ -1,69 +1,32 @@
-// let createNewSpaceship = (name) => {
-//   return {
-//     name
-//   }
-//   { name: name }
-// }
-
-
-// createNewSpaceship("Cool Ship")
-// {
-//   name: "Cool Ship"
-// }
-
-// createNewSpaceship("Serenity")
-// {
-//   name: "Serenity"
-// }
-
-// "name" is the key, "providedName" is the value
-// "name" could also be called an attribute or property of the object
-
-let createNewSpaceship = (providedName) => {
-  return {
-    name: providedName,
-    crew : [],
-    propulsion: null,
-    loadCrew(arrayOfCrewMemberObjects) {
-      // 5. We take the array of crewMember objects and add them
-      // into our spaceship's `crew` array
-
-      // console.log("arrayOfCrewMemberObjects", arrayOfCrewMemberObjects);
-      // console.log("this.crew", this.crew);
-      arrayOfCrewMemberObjects.forEach((person) => {
-        // console.log("person", person);
-        this.crew.push(person);
-        // console.log("this.crew", this.crew);
-        let { name } = person;
-        console.log(`${name} is now aboard the ${this.name}.`);
-        // let { name: crewName } = person;
-        // console.log(`${crewName} is now aboard the ${this.name}.`);
+let createNewSpaceship = (name) =>{
+  let newShipObject = {
+    name,
+    crew: [],
+    rocket:null,
+    loadCrew(crewArray){
+      crewArray.forEach(member => {
+        this.crew.push(member)
+        console.log(`${member.name} has joined the crew!`)
       })
     },
-    captain() {
-      console.log("finding a random captain");
-      const crewIndex = Math.floor(Math.random() * this.crew.length)
-      return this.crew[crewIndex]
+    captain(){
+      let num = Math.floor(Math.random() * this.crew.length)
+      return this.crew[num]
     },
-    mountPropulsion(rocketObject) {
+    mountPropulsion(rocketObject){
       this.propulsion = rocketObject
-      console.log("Your new propulsion has been mounted!")
+      console.log("Propulsion has been mounted")
     },
-    takeoff() {
-      // fire the propulsion drives
-      // if the engines fire
-      // if(this.propulsion.fire() === true) {
-      // if(true)
-      if(this.propulsion.fire()) {
-        // print a really convincing takeoff noise
-        console.log("VROOOOOOOOM")
-      } else {
-        // if they fail
-        // print that takeoff was unsuccessful
-        console.log("The takeoff was unsuccessful. Womp womp")
-      }
+    takeoff(){
+      if (this.propulsion.fuel > 0 ){
+      this.propulsion.fire()
+      console.log("Up and Atom!")
+    } else {
+      console.log("Not enough fuel, we could not launch.")
+    }
     }
   }
+  return newShipObject
 }
 
-export default createNewSpaceship;
+export default createNewSpaceship

@@ -1,7 +1,9 @@
 let createNewCrewMember = (name) => {
-  return {
-    name: name,
-    trained: false
+  let crewMemberObject = {
+    name,
+    trained:false 
   }
+  return crewMemberObject
 }
+
 export default createNewCrewMember
